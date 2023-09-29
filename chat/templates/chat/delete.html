@@ -1,0 +1,46 @@
+<style>
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .input-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+     
+    button{
+        width: 300px;
+        height: 40px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+
+
+</style>
+
+<div class="container">
+   <form method="POST">
+    {% csrf_token %}
+    <h1>Are you sure you wanna delete this message: "{{message}}"</h1>
+    <div class="input-container">
+        <button><a>Confirm</a></button>
+    </div>
+    
+   </form>
+</div>

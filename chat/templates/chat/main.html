@@ -1,0 +1,119 @@
+<style>
+    /* Container styles */
+    .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+        label {
+            margin-bottom: 5px;
+        }
+
+        
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .submit{
+            margin-top: 15px;
+        }
+
+        .count{
+            font-family: sans-serif;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-family: sans-serif;
+            }
+        
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+        }
+        
+        .message{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        li{
+            list-style-type: none;
+            color: #d9534f;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+</style>
+
+
+<h1><p>Welcome {{request.user}}</p></h1>
+<h3><a href="{% url 'logout' %}">Logout</a></h3>
+
+{% if room_count == 1%}
+<div class="count"><h2>There is {{room_count}} room available</h2></div>
+{% elif room_count > 1 %}
+<div class="count"><h2>There are {{room_count}} rooms available</h2></div>
+{% else %}
+<div class="count"><h2>No Rooms currently </h2></div>
+{% endif %}
+
+<div class="container">
+    <form class="form" method="POST" >
+        {% csrf_token %}
+        <label>Username:</label>
+        <input type="text" placeholder="Username here" name="username">
+        <br>
+        <label>Room:</label>
+        <input type="text" placeholder="Room name here" name="room">
+        <input type="submit" value="Submit" class="submit">
+    </form>
+</div>
+
+<div class="message">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>

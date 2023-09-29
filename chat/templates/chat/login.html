@@ -1,0 +1,83 @@
+<style>
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login_form {
+        width: 300px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form input[type="text"],
+    .form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .submit {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .submit:hover {
+        background-color: #007bff;
+    }
+
+    
+    
+    li{
+    list-style-type: none;
+    color: #d9534f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    }
+
+</style>
+
+<div class="login_form">
+    <form class="form" method="POST" >
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Username.." name="username">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Password..." name="password">
+        <input type="submit" value="Login" class="submit">
+        <a style="float:right; padding: 10px 20px; font-weight: bold; color: #007bff;" href="{% url 'register' %}">Sign up</a>
+    </form>
+</div>
+
+<div class="message">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+
+
+
+
